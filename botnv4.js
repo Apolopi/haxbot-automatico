@@ -4,8 +4,8 @@
 
 /* ROOM */
 
-const roomName = "X3 BOT FUTSAL PARA TODOS";
-const botName = "bot safado";
+const roomName = "X3 BOT FUTSAL É PARA TODOS";
+const botName = "Julius_randles";
 const maxPlayers = 12;
 const roomPublic = true;
 const geo = [{"code": "DE", "lat": 51.1, "lon": 10.4}, {"code": "FR", "lat": 46.2, "lon": 2.2}, {"code": "PL", "lat": 51.9, "lon": 19.1}, {"code": "GB", "lat": 55.3, "lon": -3.4}, {"code": "PT", "lat": 39.3, "lon": -8.2}];
@@ -819,7 +819,7 @@ room.onPlayerKicked = function(kickedPlayer, reason, ban, byPlayer) {
 room.onPlayerChat = function (player, message) {
 	message = message.split(/ +/);
 	player.team != Team.SPECTATORS ? setActivity(player, 0) : null;
-	if (["!help"].includes(message[0].toLowerCase())) {
+	if (["!help","!ajuda"].includes(message[0].toLowerCase())) {
 		room.sendChat("[PV] Player commands : !me, !games, !wins, !goals, !assists, !cs, !afks, !mutes, !bans.", player.id);
 		player.admin ? room.sendChat("[PV] Admin : !mute <duration = 3> #<id>, !unmute all/#<id>, !clearbans <number = all>, !slow <duration>, !endslow", player.id) : null;
 	}
@@ -859,7 +859,7 @@ room.onPlayerChat = function (player, message) {
 		cstm += ".";
 		room.sendChat(cstm, player.id);
 	}
-	else if (["!me"].includes(message[0].toLowerCase())) {
+	else if (["!me","!stats","!status","!eu"].includes(message[0].toLowerCase())) {
 		var stats;
 		localStorage.getItem(getAuth(player)) ? stats = JSON.parse(localStorage.getItem(getAuth(player))) : stats = [0, 0, 0, 0, "0.00", 0, 0, 0, 0, "0.00"];
 		room.sendChat("[PV] " + player.name + "> Jogos: " + stats[Ss.GA] + ", Vitórias: " + stats[Ss.WI] + ", Draw: " + stats[Ss.DR] + ", Derrotas: " + stats[Ss.LS] + ", WinRate: " + stats[Ss.WR] + "%, Gols: " + stats[Ss.GL] + ", Assistências: " + stats[Ss.AS] + ", GK: " + stats[Ss.GK] + ", CS: " + stats[Ss.CS] + ", CS%: " + stats[Ss.CP] + "%", player.id);
@@ -884,7 +884,7 @@ room.onPlayerChat = function (player, message) {
 		tableau.sort(function (a, b) { return b[1] - a[1]; });
 		room.sendChat("[PV] Wins> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], player.id);
 	}
-	else if (["!goals"].includes(message[0].toLowerCase())) {
+	else if (["!goals","!gols"].includes(message[0].toLowerCase())) {
 		var tableau = [];
 		Object.keys(localStorage).forEach(function (key) { if (!["player_name", "view_mode", "geo", "avatar", "player_auth_key"].includes(key)) { tableau.push([(JSON.parse(localStorage.getItem(key))[Ss.NK]), (JSON.parse(localStorage.getItem(key))[Ss.GL])]); } });
 		if (tableau.length < 5) {
@@ -1065,7 +1065,7 @@ room.onPlayerChat = function (player, message) {
 	}
 	else if (["!banlist", "!bans"].includes(message[0].toLowerCase())) {
 		if (banList.length == 0) {
-			room.sendChat("[PV] There's nobody in the Ban List !", player.id);
+			room.sendChat("[PV] Não há ninguem na lista de banidos !", player.id);
 			return false;
 		}
 		var cstm = "[PV] Ban List : ";
@@ -1101,7 +1101,7 @@ room.onPlayerChat = function (player, message) {
 			}
 		}
 	}
-	else if (["!bb", "!bye", "!cya", "!gn","xau"].includes(message[0].toLowerCase())) {
+	else if (["!bb", "!bye", "!cya", "!gn","!xau"].includes(message[0].toLowerCase())) {
 		room.kickPlayer(player.id, "Até mais !", false);
 	}
 	if (teamR.length != 0 && teamB.length != 0 && inChooseMode) {
