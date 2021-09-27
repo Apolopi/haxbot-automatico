@@ -896,7 +896,7 @@ room.onPlayerChat = function (player, message) {
 	else if (["!me","!stats","!status","!eu"].includes(message[0].toLowerCase())) {
 		var stats;
 		localStorage.getItem(getAuth(player)) ? stats = JSON.parse(localStorage.getItem(getAuth(player))) : stats = [0, 0, 0, 0, "0.00", 0, 0, 0, 0, "0.00"];
-		room.sendAnnouncement("[PV] " + player.name + "> Jogos: " + stats[Ss.GA] + ", Vitórias: " + stats[Ss.WI] + ", Draw: " + stats[Ss.DR] + ", Derrotas: " + stats[Ss.LS] + ", WinRate: " + stats[Ss.WR] + "%, Gols: " + stats[Ss.GL] + ", Assistências: " + stats[Ss.AS] + ", GK: " + stats[Ss.GK] + ", CS: " + stats[Ss.CS] + ", CS%: " + stats[Ss.CP] + "%", null , 0xFF8C00 ,"bold", 2);
+		room.sendAnnouncement("[PV] " + player.name + "> Jogos: " + stats[Ss.GA] + ", Vitórias: " + stats[Ss.WI] + ", empates: " + stats[Ss.DR] + ", Derrotas: " + stats[Ss.LS] + ", WinRate: " + stats[Ss.WR] + "%, Gols: " + stats[Ss.GL] + ", Assistências: " + stats[Ss.AS] + ", GK: " + stats[Ss.GK] + ", CS: " + stats[Ss.CS] + ", CS%: " + stats[Ss.CP] + "%", null , 0xFF8C00 ,"bold", 2);
 
 		//room.sendChat("[PV] " + player.name + "> Jogos: " + stats[Ss.GA] + ", Vitórias: " + stats[Ss.WI] + ", Draw: " + stats[Ss.DR] + ", Derrotas: " + stats[Ss.LS] + ", WinRate: " + stats[Ss.WR] + "%, Gols: " + stats[Ss.GL] + ", Assistências: " + stats[Ss.AS] + ", GK: " + stats[Ss.GK] + ", CS: " + stats[Ss.CS] + ", CS%: " + stats[Ss.CP] + "%", player.id);
 	}
