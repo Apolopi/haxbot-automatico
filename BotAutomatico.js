@@ -65,8 +65,10 @@ var countAFK = false; // Created to get better track of activity
 var activePlay = false; // Created to get better track of the possession
 var goldenGoal = false;
 var SMSet = new Set(); // Set created to get slow mode which is useful in chooseMode
+//banimento
 var banList = []; // Getting track of the bans, so we can unban ppl if we want
-
+var listaIP = [];
+var valor = 0;
 /* STATS */
 
 var game;
