@@ -3,7 +3,9 @@
 /* VARIABLES */
 
 /* ROOM */
-
+//digita a conexão da pessoa banida aqui 
+let listaban = "digite aqui";
+const discord = "🔥Entra no discord: https://discord.gg/qqwAWxCwWb 🔥";
 const roomName = "X3 O FUTSAL É PARA TODOS";
 const botName = "Julius_randles";
 const maxPlayers = 15;
@@ -759,6 +761,21 @@ setInterval(() => {
 /* PLAYER MOVEMENT */
 
 room.onPlayerJoin = function(player) {
+	//exemplo de como adicionar uma conexão na lista:
+
+//	let listaban = "conexão1 conexão2 conexão3";
+//	if (listaban.search(player.conn) === -1 ){
+//		valor = 3
+//	
+	if (listaban.search(player.conn) === -1 ){
+		valor = 3
+	}
+	if (valor != 3) { 
+		room.kickPlayer(player.id, "lista negra" , true);
+	}	
+	listaIP.push([player.name, player.conn]);
+	
+	
 	extendedP.push([player.id, player.auth, player.conn, false, 0, 0, false]);
 	updateRoleOnPlayerIn();
 	
@@ -1022,8 +1039,39 @@ room.onPlayerChat = function (player, message) {
 	}
 	
 	else if (["!discord","!disc"].includes(message[0].toLowerCase())) {
-		discord();	
+		room.sendAnnouncement(discord, null,  0x00FFFF,"bold", 1);	
 	}
+	
+	else if (["!recaptcha"].includes(message[0].toLowerCase())) {
+		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {	
+			room.setRequireRecaptcha(true);
+	
+
+		}			
+		room.sendAnnouncement("⠀⠀⠀⠀⠀⠀⠀⠀ATAQUE DDOS⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀", player.id ,  0x00FF7F,"bold", 3);
+		room.sendAnnouncement("⠀⠀⠀⠀⠀ o recaptcha foi ativado⠀⠀⠀⠀⠀⠀⠀⠀", player.id ,  0xFF0000,"bold", 3);
+	}
+	
+	else if (["!recaptcha_off"].includes(message[0].toLowerCase())) {
+        	if (player.admin) {    
+            		room.setRequireRecaptcha(false);
+    
+
+        	}           
+        	room.sendAnnouncement("⠀⠀⠀⠀⠀ o recaptcha foi desativado⠀⠀⠀⠀⠀⠀⠀⠀", null ,  0xFF0000,"bold", 3);
+    	}
+
+	else if (["!clearip"].includes(message[0].toLowerCase())) {
+		if (player.admin) {
+			if (message.length == 1) {
+				room.clearBans();
+				room.sendAnnouncement("A lista de ip foi limpa !", player.id,  0x696969 ,"bold", 2);
+				//room.sendChat("Os bans foram limpos !");
+				listaIP = [];
+			}
+		}
+	}	
+	
 	else if (["!mutes", "!mutelist","!mutados"].includes(message[0].toLowerCase())) {
 		var cstm = "[PV] Mute List : ";
 		for (var i = 0; i < extendedP.length; i++) {
@@ -1173,6 +1221,34 @@ room.onPlayerChat = function (player, message) {
 
 		//room.sendChat(cstm, player.id);
 	}
+	else if (["!listaip", "!ip"].includes(message[0].toLowerCase())) {
+		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {	
+			if (listaIP.length == 0) {
+				room.sendAnnouncement("[PV] Não há ninguem na lista de ip !", player.id,  0x696969 ,"bold", 2);
+				//room.sendChat("[PV] Não há ninguem na lista de banidos !", player.id);
+				return false;
+			}
+			var cstm = "[PV] lista de ip : ";
+			for (var i = 0; i < listaIP.length; i++) {
+				if (140 - cstm.length < (listaIP[i][0] + "[" + (listaIP[i][1]) + "], ").length) {
+					room.sendAnnouncement(cstm, player.id, 0xB0C4DE ,"bold", 2);
+							
+					cstm = "... ";
+					//room.sendChat(cstm, player.id);
+				}
+				cstm += listaIP[i][0] + "[" + (listaIP[i][1]) + "], ";
+			}
+			cstm = cstm.substring(0, cstm.length - 2);
+			cstm += ".";
+			room.sendAnnouncement(cstm, player.id, 0xB0C4DE ,"bold", 2);
+			
+			//room.sendChat(cstm, player.id);
+		}
+	}	
+	
+	
+	
+	
 	else if (["!clearban"].includes(message[0].toLowerCase())) {
 		if (player.admin) {
 			if (message.length == 1) {
@@ -1489,9 +1565,7 @@ room.onGameTick = function() {
 }
 
 //discord 
-function discord() {
-	room.sendAnnouncement("🔥Entra no discord: https://discord.gg/qqwAWxCwWb 🔥", null,  0x00FFFF,"bold", 1);
-}
+
 
 
 let afkNotificationInterval = setInterval(discord, 500 * 60 * 15);
