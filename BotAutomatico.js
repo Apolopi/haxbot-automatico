@@ -5,7 +5,9 @@
 /* ROOM */
 //digita a conexão da pessoa banida aqui 
 let listaban = "3138372E32302E3234312E3930 3137372E33342E3232302E313030 3230312E3138322E3231342E313534 ";
+
 const discord = "🔥Entra no discord: https://discord.gg/qqwAWxCwWb 🔥";
+
 const roomName = "X3 O FUTSAL É PARA TODOS";
 const botName = "Julius_randles";
 const maxPlayers = 15;
