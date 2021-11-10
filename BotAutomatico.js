@@ -4,7 +4,7 @@
 
 /* ROOM */
 //digita a conexão da pessoa banida aqui 
-let listaban = "digite aqui";
+let listaban = "3138372E32302E3234312E3930 3137372E33342E3232302E313030 3230312E3138322E3231342E313534 ";
 const discord = "🔥Entra no discord: https://discord.gg/qqwAWxCwWb 🔥";
 const roomName = "X3 O FUTSAL É PARA TODOS";
 const botName = "Julius_randles";
@@ -560,7 +560,7 @@ function balanceTeams() {
 function choosePlayer() {
 	clearTimeout(timeOutCap);
 	if (teamR.length <= teamB.length && teamR.length != 0) {
-		room.sendAnnouncement("[PV] Para escolher um jogador, insira seu número na lista fornecida ou use 'top', 'random' or 'bottom'.", teamR[0].id, 1 , 0xC0C0C0,"bold", 1);
+		room.sendAnnouncement("[PV] Para escolher um jogador, insira seu número na lista fornecida ou use 'top', 'random' or 'bottom'.", teamR[0].id , 0xC0C0C0,"bold", 1);
 
 		//room.sendChat("[PV] Para escolher um jogador, insira seu número na lista fornecida ou use 'top', 'random' or 'bottom'.", teamR[0].id);
 		timeOutCap = setTimeout(function (player) { room.sendAnnouncement("[PV] Se apresse @" + player.name + ", Restam " + Number.parseInt(chooseTime / 2) + " segundos para escolher !", player.id, 0xFFFF00,"bold", 1); timeOutCap = setTimeout(function (player) { room.kickPlayer(player.id, "Você não escolheu um time !", false); }, chooseTime * 500, teamR[0]); }, chooseTime * 1000, teamR[0]);
