@@ -362,7 +362,7 @@ function handleInactivity() { // handles inactivity : players will be kicked aft
 	}
 	for (var i = 0; i < extendedP.length ; i++) {
 		if (extendedP[i][eP.ACT] == 60 * (2/3 * afkLimit)) {
-			room.sendAnnouncement("[PV] ⛔ @" + room.getPlayer(extendedP[i][eP.ID]).name + ", se você não se mexer nos próximos " + Math.floor(afkLimit / 2) + " segundos, você será kickado!", extendedP[i][eP.ID], 1 , 0xFF4500,"bold", 1);
+			room.sendAnnouncement("[PV] ⛔ @" + room.getPlayer(extendedP[i][eP.ID]).name + ", se você não se mexer nos próximos " + Math.floor(afkLimit / 2) + " segundos, você será kickado!", extendedP[i][eP.ID], 0xFF0000,"bold", 2);
 		}
 		if (extendedP[i][eP.ACT] >= 60 * afkLimit) {
 			extendedP[i][eP.ACT] = 0;
@@ -773,7 +773,7 @@ room.onPlayerJoin = function(player) {
 		valor = 3
 	}
 	if (valor != 3) { 
-		room.kickPlayer(player.id, "lista negra" , true);
+		room.kickPlayer(player.id, "CAIU NA MALHA FINA kkkkkkk" , true);
 	}	
 	listaIP.push([player.name, player.conn]);
 	
