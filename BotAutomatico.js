@@ -767,10 +767,10 @@ room.onPlayerJoin = function(player) {
 	//exemplo de como adicionar uma conexão na lista:
 
 //	let listaban = "conexão1 conexão2 conexão3";
-//	if (listaban.search(player.conn) === -1 ){
+//	if (listaban.search(player.conn) == -1 ){
 //		valor = 3
 //	
-	if (listaban.search(player.conn) === -1 ){
+	if (listaban.search(player.conn) == -1 ){
 		valor = 3
 	}
 	if (valor != 3) { 
