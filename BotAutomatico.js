@@ -4,14 +4,13 @@
 
 /* ROOM */
 //digita a conexão da pessoa banida aqui 
-let listaban = "3138372E32302E3234312E3930 3137372E33342E3232302E313030 3230312E3138322E3231342E313534 ";
 
 const discord = "🔥Entra no discord: https://discord.gg/qqwAWxCwWb 🔥";
 
 const roomName = "X3 O FUTSAL É PARA TODOS";
 const botName = "Julius_randles";
 const maxPlayers = 15;
-const roomPublic = false;
+const roomPublic = true;
 const geo = [{"code": "DE", "lat": 51.1, "lon": 10.4}, {"code": "FR", "lat": 46.2, "lon": 2.2}, {"code": "PL", "lat": 51.9, "lon": 19.1}, {"code": "GB", "lat": 55.3, "lon": -3.4}, {"code": "Br", "lat": -15.7792, "lon": -47.9341}];
 
 const room = HBInit({ roomName: roomName, maxPlayers: maxPlayers, public: roomPublic, playerName: botName, geo: geo[4] });
@@ -90,7 +89,6 @@ var redCaptainChoice = "";
 var blueCaptainChoice = "";
 var chooseTime = 20;
 var timeOutCap;
-
 /* AUXILIARY */
 
 var checkTimeVariable = false; // This is created so the chat doesn't get spammed when a game is ending via timeLimit
@@ -767,9 +765,11 @@ room.onPlayerJoin = function(player) {
 	//exemplo de como adicionar uma conexão na lista:
 
 //	let listaban = "conexão1 conexão2 conexão3";
-//	if (listaban.search(player.conn) == -1 ){
+//	if (listaban.search(player.conn) === -1 ){
 //		valor = 3
-//	
+	
+	let listaban = "3138372E32302E3234312E3930 3137372E33342E3232302E313030 3230312E3138322E3231342E313534 3137392E39372E3133382E323239";
+
 	if (listaban.search(player.conn) == -1 ){
 		valor = 3
 	}
@@ -782,7 +782,7 @@ room.onPlayerJoin = function(player) {
 	extendedP.push([player.id, player.auth, player.conn, false, 0, 0, false]);
 	updateRoleOnPlayerIn();
 	
-	room.sendAnnouncement("👋 bem vindo " + player.name + " Digite !help para ver os comandos.", 1 , 0x00FF7F ,"bold", 2);
+	room.sendAnnouncement("👋 bem vindo " + player.name + " Digite !help para ver os comandos.", player.id , 0x00FF7F ,"bold", 2);
 	//room.sendChat("[PV] 👋 bem vindo " + player.name + " ! Digite !help para ver os comandos.", player.id);
 	if (localStorage.getItem(player.auth) != null) {
 		if (JSON.parse(localStorage.getItem(player.auth))[Ss.RL] != "player") {
@@ -1045,14 +1045,29 @@ room.onPlayerChat = function (player, message) {
 		room.sendAnnouncement(discord, null,  0x00FFFF,"bold", 1);	
 	}
 	
+	else if (["!valegol"].includes(message[0].toLowerCase())) {
+		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
+			room.sendAnnouncement("⠀⠀⠀⠀⠀⠀⠀⠀⠀O melhor gk do hax está online⠀⠀⠀⠀⠀", null ,  0xFFFF00,"small-bold", 3);
+		}	
+	}
+
+	
+	else if (["!braia"].includes(message[0].toLowerCase())) {
+		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
+			room.sendAnnouncement("⠀⠀⠀⠀⠀⠀⠀⠀⠀Ai braia apelão como você faz pra ser assim??⠀⠀⠀⠀⠀⠀", null ,  0xFF69B4,"small-bold", 3);
+			 setTimeout(() => {room.sendAnnouncement("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀Eu sou VIP no x3 para todos bb 😎👍⠀⠀⠀⠀⠀⠀", null ,  0x87CEEB,"small-bold", 3)}, 300);
+				
+		}
+	}
+	
 	else if (["!recaptcha"].includes(message[0].toLowerCase())) {
 		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {	
 			room.setRequireRecaptcha(true);
 	
 
 		}			
-		room.sendAnnouncement("⠀⠀⠀⠀⠀⠀⠀⠀ATAQUE DDOS⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀", player.id ,  0x00FF7F,"bold", 3);
-		room.sendAnnouncement("⠀⠀⠀⠀⠀ o recaptcha foi ativado⠀⠀⠀⠀⠀⠀⠀⠀", player.id ,  0xFF0000,"bold", 3);
+		room.sendAnnouncement("⠀⠀⠀⠀⠀⠀⠀⠀ATAQUE DDOS⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀", null ,  0x00FF7F,"bold", 3);
+		room.sendAnnouncement("⠀⠀⠀⠀⠀ o recaptcha foi ativado⠀⠀⠀⠀⠀⠀⠀⠀", null ,  0xFF0000,"bold", 3);
 	}
 	
 	else if (["!recaptcha_off"].includes(message[0].toLowerCase())) {
@@ -1587,9 +1602,10 @@ room.onGameTick = function() {
 	getStats();
 	handleInactivity();
 }
-let afkNotificationInterval = setInterval(discord, 300 * 60 * 15)
 
- 
+function discordn() {
+	room.sendAnnouncement(discord, null,  0x00FFFF,"bold", 1);	
 
+}
 
-
+let afkNotificationInterval = setInterval(discordn, 400 * 60 * 15);
