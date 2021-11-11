@@ -9,8 +9,8 @@ const discord = "🔥Entra no discord: https://discord.gg/qqwAWxCwWb 🔥";
 
 const roomName = "X3 O FUTSAL É PARA TODOS";
 const botName = "Julius_randles";
-const maxPlayers = 15;
-const roomPublic = true;
+const maxPlayers = 20;
+const roomPublic = false;
 const geo = [{"code": "DE", "lat": 51.1, "lon": 10.4}, {"code": "FR", "lat": 46.2, "lon": 2.2}, {"code": "PL", "lat": 51.9, "lon": 19.1}, {"code": "GB", "lat": 55.3, "lon": -3.4}, {"code": "Br", "lat": -15.7792, "lon": -47.9341}];
 
 const room = HBInit({ roomName: roomName, maxPlayers: maxPlayers, public: roomPublic, playerName: botName, geo: geo[4] });
@@ -1045,14 +1045,14 @@ room.onPlayerChat = function (player, message) {
 		room.sendAnnouncement(discord, null,  0x00FFFF,"bold", 1);	
 	}
 	
-	else if (["!valegol"].includes(message[0].toLowerCase())) {
+	else if (["!vale","valegol"].includes(message[0].toLowerCase())) {
 		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
 			room.sendAnnouncement("⠀⠀⠀⠀⠀⠀⠀⠀⠀O melhor gk do hax está online⠀⠀⠀⠀⠀", null ,  0xFFFF00,"small-bold", 3);
 		}	
 	}
 
 	
-	else if (["!braia"].includes(message[0].toLowerCase())) {
+	else if (["!braia", "propaganda"].includes(message[0].toLowerCase())) {
 		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
 			room.sendAnnouncement("⠀⠀⠀⠀⠀⠀⠀⠀⠀Ai braia apelão como você faz pra ser assim??⠀⠀⠀⠀⠀⠀", null ,  0xFF69B4,"small-bold", 3);
 			 setTimeout(() => {room.sendAnnouncement("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀Eu sou VIP no x3 para todos bb 😎👍⠀⠀⠀⠀⠀⠀", null ,  0x87CEEB,"small-bold", 3)}, 300);
@@ -1609,3 +1609,4 @@ function discordn() {
 }
 
 let afkNotificationInterval = setInterval(discordn, 400 * 60 * 15);
+
