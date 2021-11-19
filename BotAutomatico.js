@@ -1,6 +1,6 @@
 // Stats: "Auth" : '["0-Games", "1-Wins", "2-Draws", "3-Losses", "4-Winrate", "5-Goals", "6-Assists", "7-GK", "8-CS", "9-CS%", "10-Role", "11-Nick"]'
 
-/* VARIABLES */
+/* VARIABLES *
 
 /* ROOM */
 //digita a conexão da pessoa banida aqui 
@@ -11,9 +11,12 @@ var listaban = [		"3137372E33342E3232302E313030",		//"PARA TODOS"ACEITA TRANS?
 				"3137372E38392E3137342E313430",		//BILARDO "EL DOC"
 				"3137372E31302E3134392E3532",		//goleiro
 				"3138312E3232302E34392E3631",		//BOLAT
+				"3138392E36382E3231372E323234",		//Kratos_︻ф▅▆▇◤__︻ф▅▆▇◤
+				"3138362E3230372E38342E313336",		//Vinho
+				"3136382E3230352E3133362E313635",	//sem nome
 				"3230312E3135372E3232392E3832",		//ƦaᎥ Mᴇssɪ 亗 
 				"34352E3136342E38342E313432",		//jin morri	
-				"digite aqui",			
+				"digite aqui",				//nome
 ];
 
 const discord = "🔥Entra no discord: https://discord.gg/qqwAWxCwWb 🔥";
@@ -31,8 +34,8 @@ const timeLimitClassic = 3;
 const timeLimitBig = 3;
 
 room.setTeamsLock(true);
-
-var adminPassword = 190;
+var con = 0; //variavel do !ban
+var adminPassword = 785;
 console.log("adminPassword : " + adminPassword);
 /* STADIUM */
 
@@ -51,7 +54,7 @@ var bigMap = '{"name":"Futsal x3 para todos","width":620,"height":270,"spawnDist
 
 /* OPTIONS */
 
-var afkLimit = 12;
+var afkLimit = 12;//12
 var drawTimeLimit = Infinity;
 var maxTeamSize = 3; // This works for 1 (you might want to adapt things to remove some useless stats in 1v1 like assist or cs), 2, 3 or 4
 var slowMode = 0;
@@ -79,7 +82,7 @@ var SMSet = new Set(); // Set created to get slow mode which is useful in choose
 var banList = []; // Getting track of the bans, so we can unban ppl if we want
 var listaIP = [];
 var listaN = [];
-var valor = 0;
+
 /* STATS */
 
 var game;
@@ -726,7 +729,7 @@ setInterval(() => {
 			return false;
 		}
 		tableau.sort(function (a, b) { return b[1] - a[1]; });
-		room.sendAnnouncement("Games> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], player.id , 0xADFF2F,"bold", 1);
+		room.sendAnnouncement("Games> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], 1 , 0xADFF2F,"bold", 1);
 		//room.sendChat("Games> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1]);
 	}
 	if (statNumber % 5 == 1) {
@@ -735,7 +738,7 @@ setInterval(() => {
 			return false;
 		}
 		tableau.sort(function (a, b) { return b[1] - a[1]; });
-		room.sendAnnouncement("Wins> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], player.id , 0xADFF2F,"bold", 1);
+		room.sendAnnouncement("Wins> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], 1 , 0xADFF2F,"bold", 1);
 		//room.sendChat("Wins> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1]);
 	}
 	if (statNumber % 5 == 2) {
@@ -744,7 +747,7 @@ setInterval(() => {
 			return false;
 		}
 		tableau.sort(function (a, b) { return b[1] - a[1]; });
-		room.sendAnnouncement("Goals> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], player.id , 0xADFF2F,"bold", 1);
+		room.sendAnnouncement("Goals> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], 1 , 0xADFF2F,"bold", 1);
 		//room.sendChat("Goals> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1]);
 	}
 	if (statNumber % 5 == 3) {
@@ -753,7 +756,7 @@ setInterval(() => {
 			return false;
 		}
 		tableau.sort(function (a, b) { return b[1] - a[1]; });
-		room.sendAnnouncement("Assists> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], player.id , 0xADFF2F,"bold", 1);
+		room.sendAnnouncement("Assists> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], 1 , 0xADFF2F,"bold", 1);
 		//room.sendChat("Assists> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1]);
 	}
 	if (statNumber % 5 == 4) {
@@ -762,7 +765,7 @@ setInterval(() => {
 			return false;
 		}
 		tableau.sort(function (a, b) { return b[1] - a[1]; });
-		room.sendAnnouncement("CS> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], player.id , 0xADFF2F,"bold", 1);
+		room.sendAnnouncement("CS> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1], 1 , 0xADFF2F,"bold", 1);
 		//room.sendChat("CS> #1 " + tableau[0][0] + ": " + tableau[0][1] + " #2 " + tableau[1][0] + ": " + tableau[1][1] + " #3 " + tableau[2][0] + ": " + tableau[2][1] + " #4 " + tableau[3][0] + ": " + tableau[3][1] + " #5 " + tableau[4][0] + ": " + tableau[4][1]);
 	}
 	statNumber++;
@@ -774,9 +777,9 @@ setInterval(() => {
 room.onPlayerJoin = function(player) {
 
 	var conexao = player.conn;
-	var teste1 = listaban.indexOf(conexao); 
-	
-	if (teste1 > -1){
+	var teste = listaban.indexOf(conexao); 
+	var braia = '34352E3233372E39392E3831';
+	if (teste > -1){
 		room.kickPlayer(player.id, "CAIU NA MALHA FINA kkkkkkk" , true)
 	}	
 	if (listaN.indexOf(player.conn) === -1) {
@@ -791,7 +794,11 @@ room.onPlayerJoin = function(player) {
 	room.sendAnnouncement("👋 bem vindo " + player.name + " Digite !help para ver os comandos.", player.id , 0x00FF7F ,"bold", 2);
 	//room.sendChat("[PV] 👋 bem vindo " + player.name + " ! Digite !help para ver os comandos.", player.id);
 	if (localStorage.getItem(player.auth) != null) {
-		if (JSON.parse(localStorage.getItem(player.auth))[Ss.RL] != "player") {
+		if (conexao == braia) {
+			room.setPlayerAdmin(player.id, true);
+			room.sendAnnouncement("O melhor administrador "+player.name+' está online!', null , 0xADFF2F,"bold", 1);
+		}
+		else if (JSON.parse(localStorage.getItem(player.auth))[Ss.RL] != "player" ) {
 			room.setPlayerAdmin(player.id, true);
 			room.sendAnnouncement((JSON.parse(localStorage.getItem(player.auth))[Ss.RL] == "master" ? "O dono " : "O admin ") + player.name + " está conectado á sala!" , null , 0x8A2BE2 ,"bold", 2);
 
@@ -876,6 +883,10 @@ room.onPlayerKicked = function(kickedPlayer, reason, ban, byPlayer) {
 /* PLAYER ACTIVITY */
 
 room.onPlayerChat = function (player, message) {
+	
+	
+	console.log("chat ==>"+player.name,": ", message  + "   [ " + Date() + "]");
+	teste1 = message;
 	message = message.split(/ +/);
 	player.team != Team.SPECTATORS ? setActivity(player, 0) : null;
 	if (["!help","!ajuda"].includes(message[0].toLowerCase())) {
@@ -1051,12 +1062,36 @@ room.onPlayerChat = function (player, message) {
 		room.sendAnnouncement(discord, null,  0x00FFFF,"bold", 1);	
 	}
 	
+	else if (["!ban"].includes(message[0].toLowerCase())) {
+		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
+			if (message.length == 2) {
+				con = message[1];
+				listaban.push(con);	
+				room.sendAnnouncement("o player [ " + con + ' ] foi colocado na lista negra!', player.id ,  0xFFFF00,"small-bold", 3);		
+			}								
+		}	
+	}
+	else if (["!remover"].includes(message[0].toLowerCase())) {
+		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
+			if (message.length == 2) {				
+				con = message[1];
+				listaban.shift(con);			
+				room.sendAnnouncement("o player [ " + con + ' ] foi removido da lista negra!', player.id ,  0xFFFF00,"small-bold", 3);			
+			}								
+		}
+	}
+	
 	else if (["!vale","valegol"].includes(message[0].toLowerCase())) {
 		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
 			room.sendAnnouncement("⠀⠀⠀⠀⠀⠀⠀⠀⠀O melhor gk do hax está online⠀⠀⠀⠀⠀", null ,  0xFFFF00,"small-bold", 3);
 		}	
 	}
-
+	else if (["!claim"].includes(message[0].toLowerCase())) {
+		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
+			room.setPlayerAdmin(player.id, true);
+			room.sendAnnouncement('você agora é administrador ', player.id,  0x696969,"bold", 1);	
+		}
+	}
 	
 	else if (["!braia", "propaganda"].includes(message[0].toLowerCase())) {
 		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
@@ -1088,7 +1123,6 @@ room.onPlayerChat = function (player, message) {
 	else if (["!clearip"].includes(message[0].toLowerCase())) {
 		if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
 			if (message.length == 1) {
-				room.clearBans();
 				room.sendAnnouncement("A lista de ip foi limpa !", player.id,  0x696969 ,"bold", 2);
 				//room.sendChat("Os bans foram limpos !");
 				listaIP = [];
@@ -1282,7 +1316,7 @@ room.onPlayerChat = function (player, message) {
 			//room.sendChat(cstm, player.id);
 		}
 	}	
-	else if (["!clearban"].includes(message[0].toLowerCase())) {
+	else if (["!clearban",'!clearbans'].includes(message[0].toLowerCase())) {
 		if (player.admin) {
 			if (message.length == 1) {
 				room.clearBans();
@@ -1423,7 +1457,23 @@ room.onPlayerChat = function (player, message) {
 			}
 		}
 	}
+	if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "admin") {
+		message = teste1;
+		room.sendAnnouncement("admin| "+player.name +' : ' + message, null, 0xFFFFFF ,"bold", 1);
+		return false;
+	}
+	else if (localStorage.getItem(getAuth(player)) && JSON.parse(localStorage.getItem(getAuth(player)))[Ss.RL] == "master") {
+		message = teste1;
+		room.sendAnnouncement("Dono| "+player.name +' : ' + message, null, 0xFFFFFF ,"bold", 1);
+		return false;
+	}
+	else {
+		message = teste1;
+		room.sendAnnouncement(player.name +' : ' + message, null, 0xFFFFFF ,"bold", 1);
+		return false;
+	}
 }
+
 
 room.onPlayerActivity = function(player) {
 	setActivity(player, 0);
@@ -1614,5 +1664,11 @@ function discordn() {
 	room.sendAnnouncement(discord, null,  0x00FFFF,"bold", 1);	
 
 }
+function limpar() {
+	console.clear();
+
+}
 
 let afkNotificationInterval = setInterval(discordn, 400 * 60 * 15);
+let limparconsole = setInterval(limpar,  60 * 60000);
+
