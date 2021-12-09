@@ -16,7 +16,8 @@ var listaban = [		"3137372E33342E3232302E313030",		//"PARA TODOS"ACEITA TRANS?
 				"3136382E3230352E3133362E313635",	//sem nome
 				"3230312E3135372E3232392E3832",		//ƦaᎥ Mᴇssɪ 亗 
 				"34352E3136342E38342E313432",		//jin morri	
-				"digite aqui",				//nome
+				"3137372E3135352E3231322E3531",		//so vou entrar pra floodar
+					"digite  aqui"			//nome
 ];
 
 const discord = "🔥Entra no discord: https://discord.gg/qqwAWxCwWb 🔥";
